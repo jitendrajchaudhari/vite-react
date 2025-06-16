@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto'; // Using 'chart.js/auto' for auto-registration
-import type { ChartOptions, ChartData, TooltipItem } from 'chart.js'; // Import necessary Chart.js types
+// Chart.js imports removed as requested
 
 // Define TypeScript Interfaces for data structures
 interface TimelineItem {
@@ -213,8 +212,8 @@ const App = () => {
                 {/* Projects Section */}
                 <ProjectsSection projectsData={projectsData} activeFilter={activeProjectFilter} setActiveFilter={setActiveProjectFilter} />
 
-                {/* Skills Section */}
-                <SkillsSection />
+                {/* Skills Section (Text-based replacement) */}
+                <TextSkillsSection />
 
                 {/* Education Section */}
                 <EducationCertificationsSection educationData={educationData} certificationsData={certificationsData} />
@@ -223,7 +222,7 @@ const App = () => {
 
             <footer className="bg-slate-800 text-slate-300 py-6">
                 <div className="container mx-auto text-center text-sm">
-                    <p>&copy; 2024 Jitendra Chaudhari. Interactive resume created with React, Tailwind CSS, and Chart.js.</p>
+                    <p>&copy; 2024 Jitendra Chaudhari. Interactive resume created with React, Tailwind CSS.</p>
                 </div>
             </footer>
         </div>
@@ -351,111 +350,33 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectsData, activeF
     );
 };
 
-// Skills Section Component
-const SkillsSection: React.FC = () => {
-    const chartRef = useRef<HTMLCanvasElement>(null);
-    const chartInstance = useRef<Chart | null>(null); // Store Chart.js instance
-
-    useEffect(() => {
-        if (chartRef.current) {
-            if (chartInstance.current) {
-                chartInstance.current.destroy(); // Destroy previous chart instance
-            }
-
-            const skillsCtx = chartRef.current.getContext('2d');
-            if (!skillsCtx) return; // Ensure context is available
-
-            const skillsData: ChartData<'bar'> = {
-                labels: ['Frontend', 'Backend', 'Database', 'DevOps & Cloud', 'Languages', 'Tools & More'],
-                datasets: [{
-                    label: 'Technologies',
-                    data: [6, 3, 4, 4, 3, 6],
-                    backgroundColor: 'rgba(22, 163, 74, 0.4)',
-                    borderColor: 'rgb(22, 163, 74)',
-                    borderWidth: 1,
-                    barPercentage: 0.8,
-                    categoryPercentage: 0.8
-                }]
-            };
-            const skillDetails: { [key: string]: string } = {
-                'Frontend': 'React.js, React Native, Next.js, Redux, Context API, Hooks',
-                'Backend': 'Node.js, Java, Spring Boot',
-                'Database': 'MySQL, MongoDB, RavenDB, PostgreSQL',
-                'DevOps & Cloud': 'AWS, GCP, Docker, Jenkins',
-                'Languages': 'JavaScript, TypeScript, Java',
-                'Tools & More': 'Git, GitHub, Jira, Vercel, Expo, GraphQL'
-            };
-
-            const options: ChartOptions<'bar'> = {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(203, 213, 225, 0.2)'
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context: TooltipItem<'bar'>) {
-                                const category = context.label;
-                                return skillDetails[category] || '';
-                            }
-                        },
-                        bodyFont: {
-                            size: 14
-                        },
-                        padding: 10
-                    }
-                },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeInOutQuad'
-                }
-            };
-
-            chartInstance.current = new Chart(skillsCtx, {
-                type: 'bar',
-                data: skillsData,
-                options: options
-            });
-        }
-
-        return () => {
-            if (chartInstance.current) {
-                chartInstance.current.destroy();
-            }
-        };
-    }, []); // Empty dependency array means this runs once on mount
+// Skills Section Component (Text-based replacement)
+const TextSkillsSection: React.FC = () => {
+    const skillDetails: { [key: string]: string } = {
+        'Languages': 'JavaScript, TypeScript, Java',
+        'Frontend': 'React.js, React Native, Next.js, Redux, Context API, Hooks',
+        'Backend': 'Node.js, Java, Spring Boot',
+        'Database': 'MySQL, MongoDB, RavenDB, PostgreSQL, GraphQL',
+        'DevOps & Cloud': 'AWS, GCP, Docker, Jenkins',
+        'Version Control': 'Git, GitHub, GitLab, Bitbucket',
+        'Tools': 'Jira, Slack, Teamwork, Notion, Vercel, Expo',
+        'Operating Systems': 'Windows, Linux',
+        'IDEs': 'Visual Studio Code, WebStorm'
+    };
 
     return (
         <section id="skills" className="py-16 md:py-24 fade-in">
             <h2 className="text-3xl font-bold tracking-tight text-center text-slate-900">Technical Skills</h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-slate-600">
-                This chart provides a visual breakdown of my technical expertise across different categories. Hover over the bars to see the specific technologies I'm proficient in.
+                A comprehensive list of my technical proficiencies across various domains.
             </p>
-            <div className="mt-12 chart-container">
-                <canvas ref={chartRef}></canvas>
+            <div className="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+                {Object.entries(skillDetails).map(([category, skills], index) => (
+                    <div key={index} className="flex flex-col">
+                        <h3 className="text-lg font-semibold text-cyan-700 mb-1">{category}</h3>
+                        <p className="text-slate-700 text-base">{skills}</p>
+                    </div>
+                ))}
             </div>
         </section>
     );
