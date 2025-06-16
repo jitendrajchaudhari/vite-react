@@ -5,6 +5,33 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
+    <!-- Tailwind CSS CDN - REQUIRED for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use all default colors and variations -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Defining custom colors used in the React app for a dark theme
+              // These mimic Tailwind's default color palette for zinc, cyan, green
+              // but are explicitly listed for clarity and potential overrides.
+              'zinc-900': '#18181B', // Body background
+              'zinc-200': '#E4E4E7', // Main text color
+              'zinc-800': '#27272A', // Header, timeline, skills background
+              'zinc-50': '#FAFAFA',  // Highlighted text (name, section titles)
+              'zinc-400': '#A1A1AA', // Sub-text, email/phone
+              'zinc-700': '#3F3F46', // Project cards, filter buttons (inactive)
+              'zinc-600': '#52525B', // Project card tech stack pills, hover for filter btns
+              'zinc-950': '#09090B', // Footer, education section background
+              'cyan-400': '#22D3EE', // Accent color for links, primary text on dark
+              'cyan-600': '#0891B2', // Active filter button, work timeline icon
+              'green-600': '#16A34A', // Education timeline icon
+            },
+          }
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
