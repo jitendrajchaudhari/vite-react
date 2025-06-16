@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// Chart.js imports removed as requested
 
-// Define TypeScript Interfaces for data structures
 interface TimelineItem {
     type: 'work' | 'education';
     title: string;
@@ -203,9 +201,9 @@ const App = () => {
                     <p className="mt-6 max-w-3xl mx-auto text-base md:text-lg text-zinc-300">
                         Senior Software Developer with 4.5+ years of experience in full-stack development, cloud platforms, and scalable enterprise systems. Proven expertise in delivering high-quality, performant applications across diverse domains including energy, media, and banking.
                     </p>
-                    <div className="mt-8 flex justify-center items-center space-x-6 text-sm text-zinc-400">
+                    <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-zinc-400">
                          <a href="mailto:jitendra.chaudhari.980@gmail.com" className="hover:text-cyan-400 transition-colors duration-200">jitendra.chaudhari.980@gmail.com</a>
-                         <span>&bull;</span>
+                         <span className="hidden sm:inline">&bull;</span> {/* Hide bullet on small screens */}
                          <a href="tel:+919421326461" className="hover:text-cyan-400 transition-colors duration-200">+91 9421326461</a>
                     </div>
                 </section>
