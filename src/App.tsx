@@ -31,6 +31,10 @@ interface Certification {
 
 // Main App Component
 const App = () => {
+    // IMPORTANT: Ensure Tailwind CSS is correctly set up in your project's public/index.html or build process.
+    // E.g., via CDN: <script src="https://cdn.tailwindcss.com"></script> in public/index.html
+    // Or via PostCSS: configure tailwind.config.js and import index.css (containing @tailwind directives) in main.tsx
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
     const [activeProjectFilter, setActiveProjectFilter] = useState<string>('All');
 
