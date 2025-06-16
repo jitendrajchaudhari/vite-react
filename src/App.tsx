@@ -1,13 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto'; // Using 'chart.js/auto' for auto-registration
+import type { ChartOptions, ChartData, TooltipItem } from 'chart.js'; // Import necessary Chart.js types
+
+// Define TypeScript Interfaces for data structures
+interface TimelineItem {
+    type: 'work' | 'education';
+    title: string;
+    company: string;
+    date: string;
+    details: string[];
+}
+
+interface Project {
+    id: number;
+    company: string;
+    title: string;
+    description: string;
+    techStack: string[];
+}
+
+interface EducationItem {
+    degree: string;
+    institution: string;
+    year: string;
+}
+
+interface Certification {
+    name: string;
+    url: string;
+}
 
 // Main App Component
 const App = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeProjectFilter, setActiveProjectFilter] = useState('All');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [activeProjectFilter, setActiveProjectFilter] = useState<string>('All');
 
     // Data for the resume
-    const timelineData = [
+    const timelineData: TimelineItem[] = [
         {
             type: 'work',
             title: 'Senior Software Developer',
@@ -46,7 +75,7 @@ const App = () => {
         }
     ];
 
-    const projectsData = [
+    const projectsData: Project[] = [
         {
             id: 1,
             company: 'HCL Software',
@@ -77,7 +106,7 @@ const App = () => {
         }
     ];
 
-    const educationData = [
+    const educationData: EducationItem[] = [
         {
             degree: 'Post Graduate Diploma in Advanced Computing',
             institution: 'CDAC, Sunbeam Institute, Karad',
@@ -90,7 +119,7 @@ const App = () => {
         }
     ];
 
-    const certificationsData = [
+    const certificationsData: Certification[] = [
         { name: 'CDAC – Diploma in Advanced Computing', url: 'https://drive.google.com/file/d/1eIt6NmB91c967ViV8PsxAEhLd2qUjOQl/view' },
         { name: 'React Native – Udemy', url: 'https://www.udemy.com/certificate/UC-39a83d59-191e-4fd3-86e1-12c9e1aef06c/' },
         { name: 'React JS – Udemy', url: 'https://www.udemy.com/certificate/UC-bf33d4aa-47a6-4f7d-84bb-776e6389bba4' }
@@ -202,10 +231,14 @@ const App = () => {
 };
 
 // Timeline Section Component
-const TimelineSection = ({ data }) => {
-    const [openItem, setOpenItem] = useState(null);
+interface TimelineSectionProps {
+    data: TimelineItem[];
+}
 
-    const toggleItem = (index) => {
+const TimelineSection: React.FC<TimelineSectionProps> = ({ data }) => {
+    const [openItem, setOpenItem] = useState<number | null>(null);
+
+    const toggleItem = (index: number) => {
         setOpenItem(openItem === index ? null : index);
     };
 
@@ -217,7 +250,7 @@ const TimelineSection = ({ data }) => {
                     An interactive overview of my professional journey and educational milestones. Click on any item to see more details.
                 </p>
                 <div id="timeline-container" className="mt-12 relative border-l-2 border-slate-200 ml-4 md:ml-0">
-                    {data.map((item, index) => (
+                    {data.map((item: TimelineItem, index: number) => (
                         <div key={index} className="mb-8 flex justify-between items-start w-full right-timeline">
                             <div className="order-1 w-full px-4 py-4 ml-8">
                                 <div onClick={() => toggleItem(index)} className="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer timeline-item-header">
@@ -227,7 +260,7 @@ const TimelineSection = ({ data }) => {
                                     {item.details.length > 0 && (
                                         <div className={`timeline-item-content ${openItem === index ? 'open' : ''}`}>
                                             <ul className="space-y-2 list-disc list-inside text-slate-600">
-                                                {item.details.map((d, i) => <li key={i}>{d}</li>)}
+                                                {item.details.map((d: string, i: number) => <li key={i}>{d}</li>)}
                                             </ul>
                                         </div>
                                     )}
@@ -251,23 +284,29 @@ const TimelineSection = ({ data }) => {
 };
 
 // Projects Section Component
-const ProjectsSection = ({ projectsData, activeFilter, setActiveFilter }) => {
-    const projectGridRef = useRef(null);
+interface ProjectsSectionProps {
+    projectsData: Project[];
+    activeFilter: string;
+    setActiveFilter: React.Dispatch<React.SetStateAction<string>>;
+}
 
-    const companies = ['All', ...new Set(projectsData.map(p => p.company))];
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectsData, activeFilter, setActiveFilter }) => {
+    const projectGridRef = useRef<HTMLDivElement>(null);
 
-    const filteredProjects = activeFilter === 'All' ? projectsData : projectsData.filter(p => p.company === activeFilter);
+    const companies = ['All', ...new Set(projectsData.map((p: Project) => p.company))];
+
+    const filteredProjects = activeFilter === 'All' ? projectsData : projectsData.filter((p: Project) => p.company === activeFilter);
 
     useEffect(() => {
         // Trigger animations for newly rendered cards
         if (projectGridRef.current) {
             const cards = projectGridRef.current.querySelectorAll('.project-card');
-            cards.forEach((card, index) => {
+            cards.forEach((card: Element, index: number) => {
                 card.classList.remove('appear'); // Reset for re-animation
-                card.style.setProperty('--delay', `${index * 0.1}s`);
+                (card as HTMLElement).style.setProperty('--delay', `${index * 0.1}s`);
             });
             setTimeout(() => {
-                cards.forEach(card => card.classList.add('appear'));
+                cards.forEach((card: Element) => card.classList.add('appear'));
             }, 50); // Small delay to ensure reset
         }
     }, [filteredProjects]); // Re-run effect when filteredProjects changes
@@ -280,7 +319,7 @@ const ProjectsSection = ({ projectsData, activeFilter, setActiveFilter }) => {
                     A collection of key projects I've developed. Use the filters to explore my work at different companies and see the technologies I used to build them.
                 </p>
                 <div className="mt-8 flex justify-center space-x-2 md:space-x-4">
-                    {companies.map(company => (
+                    {companies.map((company: string) => (
                         <button
                             key={company}
                             onClick={() => setActiveFilter(company)}
@@ -292,14 +331,14 @@ const ProjectsSection = ({ projectsData, activeFilter, setActiveFilter }) => {
                     ))}
                 </div>
                 <div ref={projectGridRef} id="project-grid" className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {filteredProjects.map(project => (
+                    {filteredProjects.map((project: Project) => (
                         <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden project-card fade-in-item">
                             <div className="p-6">
                                 <h3 className="text-xl font-bold text-slate-900">{project.title}</h3>
                                 <p className="text-sm font-semibold text-cyan-700">{project.company}</p>
                                 <p className="mt-2 text-slate-600">{project.description}</p>
                                 <div className="mt-4 flex flex-wrap gap-2">
-                                    {project.techStack.map((tech, i) => (
+                                    {project.techStack.map((tech: string, i: number) => (
                                         <span key={i} className="bg-slate-200 text-slate-700 px-2 py-1 text-xs font-medium rounded-full">{tech}</span>
                                     ))}
                                 </div>
@@ -313,9 +352,9 @@ const ProjectsSection = ({ projectsData, activeFilter, setActiveFilter }) => {
 };
 
 // Skills Section Component
-const SkillsSection = () => {
-    const chartRef = useRef(null);
-    const chartInstance = useRef(null); // Store Chart.js instance
+const SkillsSection: React.FC = () => {
+    const chartRef = useRef<HTMLCanvasElement>(null);
+    const chartInstance = useRef<Chart | null>(null); // Store Chart.js instance
 
     useEffect(() => {
         if (chartRef.current) {
@@ -324,7 +363,9 @@ const SkillsSection = () => {
             }
 
             const skillsCtx = chartRef.current.getContext('2d');
-            const skillsData = {
+            if (!skillsCtx) return; // Ensure context is available
+
+            const skillsData: ChartData<'bar'> = {
                 labels: ['Frontend', 'Backend', 'Database', 'DevOps & Cloud', 'Languages', 'Tools & More'],
                 datasets: [{
                     label: 'Technologies',
@@ -336,7 +377,7 @@ const SkillsSection = () => {
                     categoryPercentage: 0.8
                 }]
             };
-            const skillDetails = {
+            const skillDetails: { [key: string]: string } = {
                 'Frontend': 'React.js, React Native, Next.js, Redux, Context API, Hooks',
                 'Backend': 'Node.js, Java, Spring Boot',
                 'Database': 'MySQL, MongoDB, RavenDB, PostgreSQL',
@@ -345,56 +386,58 @@ const SkillsSection = () => {
                 'Tools & More': 'Git, GitHub, Jira, Vercel, Expo, GraphQL'
             };
 
+            const options: ChartOptions<'bar'> = {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(203, 213, 225, 0.2)'
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context: TooltipItem<'bar'>) {
+                                const category = context.label;
+                                return skillDetails[category] || '';
+                            }
+                        },
+                        bodyFont: {
+                            size: 14
+                        },
+                        padding: 10
+                    }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                }
+            };
+
             chartInstance.current = new Chart(skillsCtx, {
                 type: 'bar',
                 data: skillsData,
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(203, 213, 225, 0.2)'
-                            },
-                            ticks: {
-                                display: false
-                            }
-                        },
-                        y: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                font: {
-                                    size: 14
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const category = context.label;
-                                    return skillDetails[category] || '';
-                                }
-                            },
-                            bodyFont: {
-                                size: 14
-                            },
-                            padding: 10
-                        }
-                    },
-                    animation: {
-                        duration: 1000,
-                        easing: 'easeInOutQuad'
-                    }
-                }
+                options: options
             });
         }
 
@@ -419,7 +462,12 @@ const SkillsSection = () => {
 };
 
 // Education and Certifications Section Component
-const EducationCertificationsSection = ({ educationData, certificationsData }) => {
+interface EducationCertificationsSectionProps {
+    educationData: EducationItem[];
+    certificationsData: Certification[];
+}
+
+const EducationCertificationsSection: React.FC<EducationCertificationsSectionProps> = ({ educationData, certificationsData }) => {
     return (
         <section id="education" className="py-16 md:py-24 bg-slate-100 rounded-2xl my-16 fade-in">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -429,7 +477,7 @@ const EducationCertificationsSection = ({ educationData, certificationsData }) =
                 </p>
                 <div className="mt-12 space-y-8">
                     <div id="education-container">
-                        {educationData.map((item, index) => (
+                        {educationData.map((item: EducationItem, index: number) => (
                             <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
                                 <p className="text-lg font-semibold text-slate-900">{item.degree}</p>
                                 <p className="text-slate-600">{item.institution}</p>
@@ -440,7 +488,7 @@ const EducationCertificationsSection = ({ educationData, certificationsData }) =
                     <div id="certifications-container" className="mt-10">
                         <h3 className="text-xl font-bold text-center text-slate-800 mb-4">Certifications</h3>
                         <div className="flex flex-wrap justify-center gap-4">
-                            {certificationsData.map((cert, index) => (
+                            {certificationsData.map((cert: Certification, index: number) => (
                                 <a key={index} href={cert.url} target="_blank" rel="noopener noreferrer" className="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-medium text-cyan-700 hover:bg-cyan-50 hover:shadow-md transition-all duration-200">
                                     {cert.name}
                                 </a>
