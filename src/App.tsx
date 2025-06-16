@@ -154,24 +154,24 @@ const App = () => {
     }, []);
 
     return (
-        <div className="bg-slate-50 text-slate-800 font-inter">
+        <div className="bg-zinc-900 text-zinc-200 font-inter">
             {/* Header & Navigation */}
-            <header id="header" className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+            <header id="header" className="bg-zinc-800/80 backdrop-blur-md sticky top-0 z-50 shadow-lg">
                 <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         <div className="flex-shrink-0">
-                            <a href="#hero" className="text-lg font-bold text-slate-900 hover:text-cyan-700 transition-colors duration-200">Jitendra Chaudhari</a>
+                            <a href="#hero" className="text-zinc-50 hover:text-cyan-400 transition-colors duration-200 text-lg font-bold">Jitendra Chaudhari</a>
                         </div>
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-4">
-                                <a href="#timeline" className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Timeline</a>
-                                <a href="#projects" className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Projects</a>
-                                <a href="#skills" className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Skills</a>
-                                <a href="#education" className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Education</a>
+                                <a href="#timeline" className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Timeline</a>
+                                <a href="#projects" className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Projects</a>
+                                <a href="#skills" className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Skills</a>
+                                <a href="#education" className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Education</a>
                             </div>
                         </div>
                         <div className="md:hidden">
-                            <button id="mobile-menu-button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-200 focus:outline-none transition-colors duration-200">
+                            <button id="mobile-menu-button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-zinc-50 hover:bg-zinc-700 focus:outline-none transition-colors duration-200">
                                 <span className="sr-only">Open main menu</span>
                                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -182,10 +182,10 @@ const App = () => {
                 </nav>
                 <div id="mobile-menu" className={`md:hidden ${isMobileMenuOpen ? '' : 'hidden'}`}>
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <a href="#timeline" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Timeline</a>
-                        <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Projects</a>
-                        <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Skills</a>
-                        <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Education</a>
+                        <a href="#timeline" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Timeline</a>
+                        <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Projects</a>
+                        <a href="#skills" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Skills</a>
+                        <a href="#education" onClick={() => setIsMobileMenuOpen(false)} className="text-zinc-300 hover:bg-zinc-700 hover:text-zinc-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Education</a>
                     </div>
                 </div>
             </header>
@@ -193,16 +193,16 @@ const App = () => {
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
                 {/* Hero Section */}
-                <section id="hero" className="text-center py-16 md:py-24 rounded-2xl shadow-inner-lg shadow-slate-100 mb-16 fade-in bg-gradient-to-t from-f8fafc to-e2e8f0">
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900">JITENDRA CHAUDHARI</h1>
-                    <p className="mt-3 text-lg md:text-xl text-cyan-700 font-semibold">Senior Software Developer</p>
-                    <p className="mt-6 max-w-3xl mx-auto text-base md:text-lg text-slate-600">
+                <section id="hero" className="text-center py-16 md:py-24 rounded-2xl shadow-inner-lg shadow-zinc-800 mb-16 fade-in bg-gradient-to-t from-zinc-950 to-zinc-800">
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-50">JITENDRA CHAUDHARI</h1>
+                    <p className="mt-3 text-lg md:text-xl text-cyan-400 font-semibold">Senior Software Developer</p>
+                    <p className="mt-6 max-w-3xl mx-auto text-base md:text-lg text-zinc-300">
                         Senior Software Developer with 4.5+ years of experience in full-stack development, cloud platforms, and scalable enterprise systems. Proven expertise in delivering high-quality, performant applications across diverse domains including energy, media, and banking.
                     </p>
-                    <div className="mt-8 flex justify-center items-center space-x-6 text-sm text-slate-500">
-                         <a href="mailto:jitendra.chaudhari.980@gmail.com" className="hover:text-cyan-700 transition-colors duration-200">jitendra.chaudhari.980@gmail.com</a>
+                    <div className="mt-8 flex justify-center items-center space-x-6 text-sm text-zinc-400">
+                         <a href="mailto:jitendra.chaudhari.980@gmail.com" className="hover:text-cyan-400 transition-colors duration-200">jitendra.chaudhari.980@gmail.com</a>
                          <span>&bull;</span>
-                         <a href="tel:+919421326461" className="hover:text-cyan-700 transition-colors duration-200">+91 9421326461</a>
+                         <a href="tel:+919421326461" className="hover:text-cyan-400 transition-colors duration-200">+91 9421326461</a>
                     </div>
                 </section>
 
@@ -220,7 +220,7 @@ const App = () => {
 
             </main>
 
-            <footer className="bg-slate-800 text-slate-300 py-6">
+            <footer className="bg-zinc-950 text-zinc-400 py-6">
                 <div className="container mx-auto text-center text-sm">
                     <p>&copy; 2024 Jitendra Chaudhari. Interactive resume created with React, Tailwind CSS.</p>
                 </div>
@@ -244,21 +244,21 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ data }) => {
     return (
         <section id="timeline" className="py-16 md:py-24 fade-in">
             <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold tracking-tight text-center text-slate-900">Career Timeline</h2>
-                <p className="mt-4 text-lg text-center text-slate-600">
+                <h2 className="text-3xl font-bold tracking-tight text-center text-zinc-50">Career Timeline</h2>
+                <p className="mt-4 text-lg text-center text-zinc-300">
                     An interactive overview of my professional journey and educational milestones. Click on any item to see more details.
                 </p>
-                <div id="timeline-container" className="mt-12 relative border-l-2 border-slate-200 ml-4 md:ml-0">
+                <div id="timeline-container" className="mt-12 relative border-l-2 border-zinc-700 ml-4 md:ml-0">
                     {data.map((item: TimelineItem, index: number) => (
                         <div key={index} className="mb-8 flex justify-between items-start w-full right-timeline">
                             <div className="order-1 w-full px-4 py-4 ml-8">
-                                <div onClick={() => toggleItem(index)} className="p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer timeline-item-header">
-                                    <p className="text-sm font-medium text-slate-500">{item.date}</p>
-                                    <h3 className="font-bold text-lg text-slate-900">{item.title}</h3>
-                                    <p className="text-md text-slate-700">{item.company}</p>
+                                <div onClick={() => toggleItem(index)} className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer timeline-item-header">
+                                    <p className="text-sm font-medium text-zinc-400">{item.date}</p>
+                                    <h3 className="font-bold text-lg text-zinc-50">{item.title}</h3>
+                                    <p className="text-md text-zinc-300">{item.company}</p>
                                     {item.details.length > 0 && (
                                         <div className={`timeline-item-content ${openItem === index ? 'open' : ''}`}>
-                                            <ul className="space-y-2 list-disc list-inside text-slate-600">
+                                            <ul className="space-y-2 list-disc list-inside text-zinc-400">
                                                 {item.details.map((d: string, i: number) => <li key={i}>{d}</li>)}
                                             </ul>
                                         </div>
@@ -311,10 +311,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectsData, activeF
     }, [filteredProjects]); // Re-run effect when filteredProjects changes
 
     return (
-        <section id="projects" className="py-16 md:py-24 bg-white rounded-2xl shadow-lg my-16 fade-in">
+        <section id="projects" className="py-16 md:py-24 bg-zinc-800 rounded-2xl shadow-lg my-16 fade-in">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold tracking-tight text-center text-slate-900">Project Portfolio</h2>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-slate-600">
+                <h2 className="text-3xl font-bold tracking-tight text-center text-zinc-50">Project Portfolio</h2>
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-zinc-300">
                     A collection of key projects I've developed. Use the filters to explore my work at different companies and see the technologies I used to build them.
                 </p>
                 <div className="mt-8 flex justify-center space-x-2 md:space-x-4">
@@ -323,7 +323,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectsData, activeF
                             key={company}
                             onClick={() => setActiveFilter(company)}
                             className={`filter-btn px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200
-                                ${activeFilter === company ? 'bg-cyan-600 text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'}`}
+                                ${activeFilter === company ? 'bg-cyan-600 text-white' : 'bg-zinc-700 text-zinc-200 hover:bg-zinc-600'}`}
                         >
                             {company}
                         </button>
@@ -331,14 +331,14 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projectsData, activeF
                 </div>
                 <div ref={projectGridRef} id="project-grid" className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {filteredProjects.map((project: Project) => (
-                        <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden project-card fade-in-item">
+                        <div key={project.id} className="bg-zinc-700 rounded-lg shadow-md overflow-hidden project-card fade-in-item">
                             <div className="p-6">
-                                <h3 className="text-xl font-bold text-slate-900">{project.title}</h3>
-                                <p className="text-sm font-semibold text-cyan-700">{project.company}</p>
-                                <p className="mt-2 text-slate-600">{project.description}</p>
+                                <h3 className="text-xl font-bold text-zinc-50">{project.title}</h3>
+                                <p className="text-sm font-semibold text-cyan-400">{project.company}</p>
+                                <p className="mt-2 text-zinc-300">{project.description}</p>
                                 <div className="mt-4 flex flex-wrap gap-2">
                                     {project.techStack.map((tech: string, i: number) => (
-                                        <span key={i} className="bg-slate-200 text-slate-700 px-2 py-1 text-xs font-medium rounded-full">{tech}</span>
+                                        <span key={i} className="bg-zinc-600 text-zinc-200 px-2 py-1 text-xs font-medium rounded-full">{tech}</span>
                                     ))}
                                 </div>
                             </div>
@@ -366,15 +366,15 @@ const TextSkillsSection: React.FC = () => {
 
     return (
         <section id="skills" className="py-16 md:py-24 fade-in">
-            <h2 className="text-3xl font-bold tracking-tight text-center text-slate-900">Technical Skills</h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-slate-600">
+            <h2 className="text-3xl font-bold tracking-tight text-center text-zinc-50">Technical Skills</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-zinc-300">
                 A comprehensive list of my technical proficiencies across various domains.
             </p>
-            <div className="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+            <div className="mt-12 max-w-4xl mx-auto bg-zinc-800 p-8 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
                 {Object.entries(skillDetails).map(([category, skills], index) => (
                     <div key={index} className="flex flex-col">
-                        <h3 className="text-lg font-semibold text-cyan-700 mb-1">{category}</h3>
-                        <p className="text-slate-700 text-base">{skills}</p>
+                        <h3 className="text-lg font-semibold text-cyan-400 mb-1">{category}</h3>
+                        <p className="text-zinc-300 text-base">{skills}</p>
                     </div>
                 ))}
             </div>
@@ -390,27 +390,27 @@ interface EducationCertificationsSectionProps {
 
 const EducationCertificationsSection: React.FC<EducationCertificationsSectionProps> = ({ educationData, certificationsData }) => {
     return (
-        <section id="education" className="py-16 md:py-24 bg-slate-100 rounded-2xl my-16 fade-in">
+        <section id="education" className="py-16 md:py-24 bg-zinc-950 rounded-2xl my-16 fade-in">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold tracking-tight text-center text-slate-900">Education & Certifications</h2>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-slate-600">
+                <h2 className="text-3xl font-bold tracking-tight text-center text-zinc-50">Education & Certifications</h2>
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-center text-zinc-300">
                     My foundational education and the key certifications that supplement my hands-on experience.
                 </p>
                 <div className="mt-12 space-y-8">
                     <div id="education-container">
                         {educationData.map((item: EducationItem, index: number) => (
-                            <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-                                <p className="text-lg font-semibold text-slate-900">{item.degree}</p>
-                                <p className="text-slate-600">{item.institution}</p>
-                                <p className="text-sm text-slate-500">{item.year}</p>
+                            <div key={index} className="bg-zinc-800 p-6 rounded-lg shadow-sm">
+                                <p className="text-lg font-semibold text-zinc-50">{item.degree}</p>
+                                <p className="text-zinc-300">{item.institution}</p>
+                                <p className="text-sm text-zinc-400">{item.year}</p>
                             </div>
                         ))}
                     </div>
                     <div id="certifications-container" className="mt-10">
-                        <h3 className="text-xl font-bold text-center text-slate-800 mb-4">Certifications</h3>
+                        <h3 className="text-xl font-bold text-center text-zinc-50 mb-4">Certifications</h3>
                         <div className="flex flex-wrap justify-center gap-4">
                             {certificationsData.map((cert: Certification, index: number) => (
-                                <a key={index} href={cert.url} target="_blank" rel="noopener noreferrer" className="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-medium text-cyan-700 hover:bg-cyan-50 hover:shadow-md transition-all duration-200">
+                                <a key={index} href={cert.url} target="_blank" rel="noopener noreferrer" className="bg-zinc-800 px-4 py-2 rounded-full shadow-sm text-sm font-medium text-cyan-400 hover:bg-zinc-700 hover:shadow-md transition-all duration-200">
                                     {cert.name}
                                 </a>
                             ))}
